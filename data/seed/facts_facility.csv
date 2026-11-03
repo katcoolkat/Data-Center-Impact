@@ -2,3 +2,8 @@ entity_type,entity_id,metric,value_low,value,value_high,value_text,unit,kind,per
 facility,microsoft_west_us_3,cooling_method,,,,"Adiabatic; evaporative above 85°F",,reported,2021,microsoft_az_2021,,,Microsoft says the Arizona datacenters use zero water for cooling for more than half the year.
 facility,meta_new_albany,cooling_method,,,,Closed-loop liquid (Prometheus AI cluster racks),,reported,2026,meta_new_albany_2026,,,Stated for the Prometheus supercluster; other buildings on the campus may differ.
 facility,equinix_ashburn,cooling_method,,,,Indirect evaporative (DC12 building),,reported,2017,equinix_dc12_2017,,,"Stated for DC12 only, one of several Equinix buildings in Ashburn."
+facility,google_loudoun,pue,,1.08,,,ratio,reported,2025,google_env_2026,google_efficiency,,"Google reports two Loudoun County facilities, both at 1.08 for 2025 (p. 95)."
+facility,google_columbus,pue,,1.06,,,ratio,reported,2025,google_env_2026,google_efficiency,,Annual PUE (p. 95).
+facility,google_new_albany,pue,,1.06,,,ratio,reported,2025,google_env_2026,google_efficiency,,Annual PUE (p. 95). Earlier years: 1.14 (2022) and 1.10 (2023).
+facility,google_lancaster,pue,,1.04,,,ratio,reported,2025,google_env_2026,google_efficiency,,"Annual PUE (p. 95), listed as Central Ohio (Lancaster)."
+facility,google_mesa,pue,,1.28,,,ratio,reported,2026-Q2,google_efficiency,,,Quarterly value (Q1 2026: 1.22). Mesa is not in the 2025 annual table so there is no full-year figure yet.
