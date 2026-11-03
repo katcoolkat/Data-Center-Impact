@@ -12,7 +12,7 @@ CREATE TABLE sources (
     kind        TEXT NOT NULL CHECK (kind IN (
                     'utility_filing', 'permit', 'sustainability_report',
                     'government_data', 'academic', 'directory',
-                    'operator_site', 'industry_survey', 'model_assumption')),
+                    'operator_site', 'industry_survey', 'news', 'model_assumption')),
     verified    INTEGER NOT NULL DEFAULT 0,  -- 1 once a human has checked the value against the document
     notes       TEXT
 );
