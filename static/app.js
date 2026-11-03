@@ -42,7 +42,7 @@ function factValue(f, unit) {
 function metricHtml(m) {
   if (m.status === "unknown") {
     return `<div class="metric"><div class="metric-head"><span class="metric-label">${esc(m.label)}</span>
-      <span class="value unknown">Unknown<span class="badge unknown">no public source found</span></span></div></div>`;
+      <span class="value unknown">Unknown<span class="badge unknown" title="Either not published, or not yet found in public filings">not yet sourced</span></span></div></div>`;
   }
   // Time series (prices) are summarised by their latest value; the chart shows the rest.
   const facts = m.facts.length > 1 && m.facts[0].period?.includes("-") ? [m.facts[m.facts.length - 1]] : m.facts;

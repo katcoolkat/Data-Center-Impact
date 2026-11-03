@@ -11,7 +11,7 @@ An interactive map of data centers in three US regions — Northern Virginia, Ce
 ## Principles
 
 - **Neutral analysis, not advocacy.** The tool reports what the data shows, in either direction.
-- **Every number carries a source.** A metric with no public source is shown as **Unknown**, not filled in.
+- **Every number carries a source.** A metric without one is shown as **Unknown — not yet sourced**, never filled in. That can mean the figure isn't published, or that it hasn't been found yet.
 - **Estimates are labeled as estimates**, with low / central / high bands, and never presented as measurements.
 
 Each value is tagged with one of four kinds:
@@ -66,7 +66,7 @@ Low and high bands combine the all-low and all-high assumptions, so they are del
 
 ## Limitations
 
-- **Per-facility data is mostly not public.** Most facility metrics will show Unknown; that is the finding, not a bug.
+- **Per-facility data is mostly not public.** Many facility metrics show Unknown. Some are unpublished; others are still being researched.
 - **Locations are approximate.** Pins are city- or county-level unless a permit gives the site.
 - **Prices are statewide averages**, not the tariff a specific utility charges a data center.
 - **CO₂ uses the annual average grid rate.** The marginal emissions of a new load can be quite different.
