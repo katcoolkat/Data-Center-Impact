@@ -1,10 +1,11 @@
 id,name,operator,region_id,city,state,lat,lon,location_precision,status,source_id,notes
 google_loudoun,Google — Loudoun County,Google,nova,,VA,39.0300,-77.5500,county,operating,google_locations,Pin is a county-level approximation; not the site address.
+google_prince_william,Google — Prince William County,Google,nova,Bristow,VA,38.7226,-77.5389,city,operating,google_locations,"Google lists Prince William County, VA as a location; its water table names Bristow, VA. Pin is city-level."
 equinix_ashburn,Equinix Ashburn campus,Equinix,nova,Ashburn,VA,39.0160,-77.4590,city,operating,equinix_dc12_2017,Multi-building colocation campus; pin is city-level.
 google_columbus,Google — Columbus,Google,central_ohio,Columbus,OH,39.9612,-82.9988,city,operating,google_locations,"Pin is city-level. Google's water table lists Lockbourne, OH (359.5 million gallons consumed in 2025), which may be this campus; it isn't assigned here without confirmation."
 google_new_albany,Google — New Albany,Google,central_ohio,New Albany,OH,40.0850,-82.7900,city,operating,google_locations,Pin is city-level and offset slightly from Meta's New Albany pin so both stay clickable.
 google_lancaster,Google — Lancaster,Google,central_ohio,Lancaster,OH,39.7137,-82.5993,city,operating,google_locations,Pin is city-level.
 meta_new_albany,Meta New Albany Data Center,Meta,central_ohio,New Albany,OH,40.0812,-82.8088,city,operating,meta_new_albany_2026,Pin is city-level.
-google_mesa,Google — Mesa,Google,phoenix,Mesa,AZ,33.4152,-111.8315,city,operating,google_locations,"Status inferred: Google's page lists Mesa without its ""(in development)"" marker but doesn't say ""operating"" outright."
+google_mesa,Google — Mesa,Google,phoenix,Mesa,AZ,33.3900,-111.7900,city,operating,google_locations,"Status inferred: Google's page lists Mesa without its ""(in development)"" marker but doesn't say ""operating"" outright. Pin is city-level and offset from Meta's Mesa pin so both stay clickable."
 meta_mesa,Meta Mesa Data Center,Meta,phoenix,Mesa,AZ,33.4152,-111.8315,city,operating,aztech_meta_mesa,First phase of a planned five-building campus is reported operational; later buildings may still be under construction.
 microsoft_west_us_3,Microsoft West US 3 region,Microsoft,phoenix,Goodyear,AZ,33.4353,-112.3577,city,operating,microsoft_az_2021,Region spans sites in Goodyear and El Mirage; pin is city-level.
