@@ -55,6 +55,7 @@ Facilities and regions hold only identity and location. **Every number lives in 
 | PUE range for the model | Google fleet-wide PUE (1.09, 2025); [Uptime Institute 2025 survey](https://datacenter.uptimeinstitute.com/rs/711-RIA-145/images/2025.Annual.Survey.Report.pdf) weighted average (1.54) | Fleet / industry |
 | Water use (WUE) by cooling system | [LBNL 2024 US Data Center Energy Usage Report](https://escholarship.org/uc/item/32d6m0d1), Figure 4.4 and p. 47 | National simulation |
 | Utilization | Author assumption, labeled as such | — |
+| Data center load on the grid | Utility releases and filings: [AEP Ohio update to PUCO](https://www.aepohio.com/company/news/view?releaseID=10753) (Feb 2026), Dominion's Q1 2026 earnings call, [APS data center page](https://www.aps.com/datacenters); [JLARC 2024](https://jlarc.virginia.gov/) for Virginia context | Utility service territory |
 
 See [`/api/sources`](https://data-center-impact-explorer.onrender.com/api/sources) for every source with its URL, access date and verification status.
 
@@ -71,11 +72,24 @@ CO₂ (t)           = Total energy × grid rate (lb/MWh) ÷ 2,204.6
 
 Low and high bands combine the all-low and all-high assumptions, so they are deliberately wide. They show the range the inputs allow, not a statistical confidence interval.
 
+## Comparing regions
+
+The **Compare** tab puts the three regions side by side:
+
+- **Grid and prices:** the latest sourced value of each region metric, including data center load contracted and requested from the local utility.
+- **Price trend:** the 5-year change in residential, commercial and industrial prices. This is derived from two reported EIA monthly averages for the same month, so seasonal swings don't distort it.
+- **Reference build:** the same hypothetical build modeled in every region, with a size and cooling type you choose. Energy and site water use national assumptions, so they come out the same everywhere; only CO₂ changes, through each grid's emission rate.
+
+Contracted and requested load are **not** current demand. They are what utilities report as signed or asked for, often for a decade ahead. Utility territories also don't match the regions exactly; each value's notes say what it covers.
+
+The same data is available as JSON at [`/api/compare/regions`](https://data-center-impact-explorer.onrender.com/api/compare/regions).
+
 ## Limitations
 
 - **Per-facility data is mostly not public.** Many facility metrics show Unknown. Some are unpublished; others are still being researched.
 - **Locations are approximate.** Pins are city- or county-level unless a permit gives the site.
 - **Prices are statewide averages**, not the tariff a specific utility charges a data center.
+- **Utility load figures cover service territories**, not the app's regions exactly. Phoenix uses APS only; Salt River Project, which serves the Mesa sites, isn't covered yet.
 - **CO₂ uses the annual average grid rate.** The marginal emissions of a new load can be quite different.
 - **Site water only.** Water consumed in generating the electricity (off-site) is not modeled.
 - **Three regions only**, by design: depth over coverage.
