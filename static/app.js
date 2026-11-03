@@ -174,10 +174,11 @@ async function init() {
     return m;
   });
   // The grid layout can settle after Leaflet first measures the container, so re-measure
-  // and re-fit on every resize until the user takes over the view.
+  // and re-fit on every resize until the user takes over the view. (No "zoomstart":
+  // fitBounds fires it too, which would count our own fit as user input.)
   const bounds = markers.length ? L.featureGroup(markers).getBounds().pad(0.2) : null;
   let userMoved = false;
-  map.once("mousedown wheel touchstart keydown zoomstart", () => (userMoved = true));
+  map.once("mousedown wheel touchstart keydown", () => (userMoved = true));
   const fit = () => {
     map.invalidateSize();
     if (bounds && !userMoved) map.fitBounds(bounds, { animate: false });
