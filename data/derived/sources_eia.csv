@@ -1,0 +1,2 @@
+id,title,publisher,url,published,accessed,kind,verified,notes
+eia_retail_sales,Electricity retail sales: average price by state and sector (EIA-861M),U.S. Energy Information Administration,https://www.eia.gov/opendata/browser/electricity/retail-sales,,2026-11-03,government_data,1,Pulled via EIA API v2.

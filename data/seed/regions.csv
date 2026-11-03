@@ -1,0 +1,4 @@
+id,name,state,utilities,balancing_authority,egrid_subregion,lat,lon,notes
+nova,Northern Virginia (Loudoun / Prince William),VA,Dominion Energy Virginia; NOVEC,PJM,SRVC,39.0438,-77.4874,Largest US data center market. Region centroid is approximate.
+central_ohio,Central Ohio (Columbus metro),OH,AEP Ohio,PJM,RFCW,40.0812,-82.8088,Region centroid is approximate.
+phoenix,Phoenix metro,AZ,Arizona Public Service; Salt River Project,AZPS; SRP,AZNM,33.4484,-112.0740,Water-stressed region. Region centroid is approximate.

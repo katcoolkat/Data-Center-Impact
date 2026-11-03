@@ -1,0 +1,103 @@
+:root {
+  --bg: #fafaf8;
+  --surface: #ffffff;
+  --text: #1c1c1a;
+  --muted: #6b6b66;
+  --border: #e3e2dc;
+  --accent: #2b5d8a;
+  --reported: #2f7d4f;
+  --estimate: #a8620b;
+  --assumption: #7a4ea3;
+  --unknown: #8a8a84;
+  --warn-bg: #fff4e0;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #161615;
+    --surface: #1f1f1d;
+    --text: #ecebe6;
+    --muted: #a3a29b;
+    --border: #34332f;
+    --accent: #7fb0dc;
+    --reported: #6cc391;
+    --estimate: #e0a050;
+    --assumption: #b994dc;
+    --unknown: #8a8a84;
+    --warn-bg: #3a2e1a;
+  }
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
+body {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  background: var(--bg);
+  color: var(--text);
+  font: 14px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+a { color: var(--accent); }
+
+header { padding: 12px 16px 0; border-bottom: 1px solid var(--border); background: var(--surface); }
+h1 { margin: 0; font-size: 18px; }
+.tagline { margin: 2px 0 8px; color: var(--muted); }
+nav { display: flex; gap: 4px; flex-wrap: wrap; }
+.tab {
+  border: 0; background: none; padding: 8px 12px; font: inherit; color: var(--muted);
+  cursor: pointer; border-bottom: 2px solid transparent; text-decoration: none;
+}
+.tab.active { color: var(--text); border-bottom-color: var(--accent); }
+
+main { display: grid; grid-template-columns: 1fr 420px; min-height: 0; }
+#map { min-height: 300px; }
+aside { overflow-y: auto; border-left: 1px solid var(--border); background: var(--surface); }
+.panel { padding: 16px; }
+.panel h2 { margin: 0 0 4px; font-size: 16px; }
+.panel h3 { margin: 18px 0 6px; font-size: 13px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); }
+.hint, .note, .meta { color: var(--muted); }
+.note { font-size: 13px; }
+
+@media (max-width: 800px) {
+  main { grid-template-columns: 1fr; grid-template-rows: 45vh auto; }
+  aside { border-left: 0; border-top: 1px solid var(--border); }
+}
+
+.metric { padding: 8px 0; border-top: 1px solid var(--border); }
+.metric-head { display: flex; justify-content: space-between; gap: 8px; }
+.metric-label { font-weight: 500; }
+.value { font-variant-numeric: tabular-nums; }
+.value.unknown { color: var(--unknown); font-style: italic; }
+.cite { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+.badge {
+  display: inline-block; font-size: 11px; padding: 0 6px; border-radius: 3px;
+  border: 1px solid currentColor; margin-left: 4px; white-space: nowrap;
+}
+.badge.reported, .badge.measured { color: var(--reported); }
+.badge.estimate { color: var(--estimate); }
+.badge.assumption, .badge.user_input { color: var(--assumption); }
+.badge.unknown { color: var(--unknown); }
+.badge.unverified { color: var(--estimate); border-style: dashed; }
+
+form label { display: block; margin: 10px 0; }
+form input, form select {
+  display: block; width: 100%; margin-top: 4px; padding: 6px 8px; font: inherit;
+  color: var(--text); background: var(--bg); border: 1px solid var(--border); border-radius: 4px;
+}
+details { margin: 10px 0; }
+button[type=submit], .btn {
+  padding: 8px 14px; font: inherit; border-radius: 4px; cursor: pointer;
+  border: 1px solid var(--accent); background: var(--accent); color: var(--surface);
+}
+.btn.secondary { background: none; color: var(--accent); }
+
+.result-row { padding: 10px 0; border-top: 1px solid var(--border); }
+.result-row .central { font-size: 20px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.result-row .range { color: var(--muted); font-variant-numeric: tabular-nums; }
+.caveats { background: var(--warn-bg); padding: 8px 12px 8px 28px; border-radius: 4px; font-size: 13px; }
+
+table.compare { width: 100%; border-collapse: collapse; font-size: 13px; }
+table.compare th, table.compare td { text-align: left; padding: 6px 4px; border-top: 1px solid var(--border); vertical-align: top; }
+
+footer { padding: 6px 16px; font-size: 12px; color: var(--muted); border-top: 1px solid var(--border); background: var(--surface); }
+.chart-wrap { position: relative; height: 200px; }

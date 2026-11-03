@@ -1,0 +1,9 @@
+id,title,publisher,url,published,accessed,kind,verified,notes
+model_assumption,Author modeling assumption,Data Center Impact Explorer,,,,model_assumption,0,Used where no public source gives a usable value. Shown as an assumption in the UI; replace with a sourced value when one is found.
+lbnl_2024,2024 United States Data Center Energy Usage Report,Lawrence Berkeley National Laboratory,https://eta.lbl.gov/publications/2024-lbnl-data-center-energy-usage-report,2024-12,,academic,0,Shehabi et al. Check PUE/WUE tables before marking verified.
+google_env_2024,2024 Environmental Report,Google,https://sustainability.google/reports/google-2024-environmental-report/,2024-07,,sustainability_report,0,Fleet PUE and per-site water consumption tables.
+uptime_survey_2024,Global Data Center Survey 2024,Uptime Institute,https://uptimeinstitute.com/resources/research-and-reports/uptime-institute-global-data-center-survey-results-2024,2024,,industry_survey,0,Industry-average PUE.
+google_locations,Discover our data center locations,Google,https://www.google.com/about/datacenters/locations/,,,operator_site,0,
+meta_locations,Meta data centers,Meta,https://datacenters.atmeta.com/,,,operator_site,0,
+equinix_dc_metro,Washington DC data centers,Equinix,https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/washington-dc-data-centers,,,operator_site,0,
+microsoft_globe,Microsoft datacenter regions,Microsoft,https://datacenters.microsoft.com/globe/explore/,,,operator_site,0,

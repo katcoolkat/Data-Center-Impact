@@ -1,0 +1,4 @@
+entity_type,entity_id,metric,value_low,value,value_high,value_text,unit,kind,period,source_id,related_source_ids,method,notes
+region,nova,grid_co2_lb_per_mwh,,593.42,,,lb/MWh,reported,2023,egrid_2023,,,eGRID subregion SRVC annual average; not a marginal rate.
+region,central_ohio,grid_co2_lb_per_mwh,,911.42,,,lb/MWh,reported,2023,egrid_2023,,,eGRID subregion RFCW annual average; not a marginal rate.
+region,phoenix,grid_co2_lb_per_mwh,,703.7,,,lb/MWh,reported,2023,egrid_2023,,,eGRID subregion AZNM annual average; not a marginal rate.

@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Data Center Impact Explorer</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header>
+    <h1>Data Center Impact Explorer</h1>
+    <p class="tagline">Sourced resource data for data centers in three US regions. Unknowns are shown as unknown.</p>
+    <nav>
+      <button class="tab active" data-tab="site">Site</button>
+      <button class="tab" data-tab="compare">Compare <span id="compare-count"></span></button>
+      <button class="tab" data-tab="model">Model a new build</button>
+      <a href="/docs" class="tab">API</a>
+    </nav>
+  </header>
+
+  <main>
+    <div id="map"></div>
+    <aside>
+      <section id="tab-site" class="panel">
+        <p class="hint">Select a pin on the map.</p>
+      </section>
+
+      <section id="tab-compare" class="panel" hidden>
+        <p class="hint">Use “Add to compare” on a site to line it up here (up to 4).</p>
+      </section>
+
+      <section id="tab-model" class="panel" hidden>
+        <h2>Model a hypothetical build</h2>
+        <p class="note">Outputs are <b>estimates</b> from the assumptions listed below, not measurements.</p>
+        <form id="model-form">
+          <label>Region <select name="region_id" id="region-select"></select></label>
+          <label>IT capacity (MW) <input name="it_capacity_mw" type="number" min="1" max="5000" step="1" value="100" required></label>
+          <label>Cooling
+            <select name="cooling">
+              <option value="evaporative">Evaporative</option>
+              <option value="air_economizer">Air-side economizer / dry</option>
+              <option value="closed_loop_liquid">Closed-loop liquid</option>
+            </select>
+          </label>
+          <details>
+            <summary>Override assumptions</summary>
+            <label>PUE <input name="pue" type="number" min="1" max="3" step="0.01" placeholder="default range"></label>
+            <label>Utilization <input name="utilization" type="number" min="0.05" max="1" step="0.05" placeholder="default range"></label>
+          </details>
+          <button type="submit">Estimate</button>
+        </form>
+        <div id="model-result"></div>
+      </section>
+    </aside>
+  </main>
+
+  <footer>
+    Neutral analysis: this tool reports what sources show, in either direction.
+    <a href="/api/sources">All sources</a>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="/static/app.js"></script>
+</body>
+</html>
