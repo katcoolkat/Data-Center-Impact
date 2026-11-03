@@ -1,5 +1,7 @@
 # Data Center Impact Explorer
 
+[![tests](https://github.com/katcoolkat/Data-Center-Impact/actions/workflows/tests.yml/badge.svg)](https://github.com/katcoolkat/Data-Center-Impact/actions/workflows/tests.yml)
+
 **Live demo:** https://data-center-impact-explorer.onrender.com · **API docs:** https://data-center-impact-explorer.onrender.com/docs
 
 _Hosted on Render's free tier, so the first load after a quiet spell can take ~30 seconds while it wakes up._
