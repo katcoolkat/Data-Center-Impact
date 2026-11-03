@@ -7,3 +7,7 @@ facility,google_columbus,pue,,1.06,,,ratio,reported,2025,google_env_2026,google_
 facility,google_new_albany,pue,,1.06,,,ratio,reported,2025,google_env_2026,google_efficiency,,Annual PUE (p. 95). Earlier years: 1.14 (2022) and 1.10 (2023).
 facility,google_lancaster,pue,,1.04,,,ratio,reported,2025,google_env_2026,google_efficiency,,"Annual PUE (p. 95), listed as Central Ohio (Lancaster)."
 facility,google_mesa,pue,,1.28,,,ratio,reported,2026-Q2,google_efficiency,,,Quarterly value (Q1 2026: 1.22). Mesa is not in the 2025 annual table so there is no full-year figure yet.
+facility,google_loudoun,annual_water_gal,,443700000,,,gal,reported,2025,google_env_2026,,"Sum of Google's rows for three Loudoun County towns: Ashburn 53.2, Leesburg 190.7 and Sterling 199.8 million gallons consumed (p. 97).","Consumption = withdrawal minus discharge. Combined withdrawal was 573.0 million gallons."
+facility,google_new_albany,annual_water_gal,,835700000,,,gal,reported,2025,google_env_2026,,,"835.7 million gallons consumed (withdrawal 1,008.1; discharge 172.4), p. 97."
+facility,google_lancaster,annual_water_gal,,135800000,,,gal,reported,2025,google_env_2026,,,"135.8 million gallons consumed (withdrawal 307.1; discharge 171.3), p. 97."
+facility,google_mesa,annual_water_gal,,9700000,,,gal,reported,2025,google_env_2026,,,"9.7 million gallons consumed (withdrawal 19.4; discharge 9.7), p. 97. Low relative to Google's other US sites."
