@@ -6,7 +6,7 @@ _Hosted on Render's free tier, so the first load after a quiet spell can take ~3
 
 An interactive map of data centers in three US regions — Northern Virginia, Central Ohio, and Phoenix — with their sourced resource data (power, grid carbon intensity, water and cooling, local electricity prices), plus a model for estimating the footprint of a hypothetical new build.
 
-<!-- screenshot: docs/screenshot.png -->
+![Data Center Impact Explorer: map of the three regions with the Meta New Albany site panel open](docs/screenshot.png)
 
 ## Principles
 
