@@ -105,3 +105,7 @@ Add a row to `data/seed/facts_facility.csv` and, if new, its source to `data/see
 ## Deploy
 
 `render.yaml` deploys to Render's free tier straight from GitHub: in the Render dashboard choose **New → Blueprint** and pick this repo. The build installs dependencies and rebuilds the SQLite file from the committed CSVs, so no API keys are needed on the server. The free tier sleeps when idle, so the first request can take ~30 s.
+
+## License
+
+Code is released under the [MIT License](LICENSE). The data in `data/` comes from the publishers cited in `data/seed/sources.csv` and remains subject to their terms; cite the original source when reusing a figure.
