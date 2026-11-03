@@ -57,6 +57,7 @@ function metricHtml(m) {
 // ---------- site panel ----------
 async function showFacility(id) {
   showTab("site");
+  history.replaceState(null, "", `#site=${encodeURIComponent(id)}`);
   const f = await api(`/api/facilities/${id}`);
   const r = await api(`/api/regions/${f.region_id}`);
   const inCompare = compare.has(id);
@@ -179,5 +180,9 @@ async function init() {
   };
   fit();
   new ResizeObserver(fit).observe($("#map"));
+
+  // Shareable links: /#site=<facility id> opens that site's panel.
+  const linked = new URLSearchParams(location.hash.slice(1)).get("site");
+  if (linked && facilities.some((f) => f.id === linked)) showFacility(linked);
 }
 init();
