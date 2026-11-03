@@ -33,7 +33,8 @@ function sourceLine(src) {
 
 function factValue(f, unit) {
   if (f.value_text) return esc(f.value_text);
-  const mid = `${fmt(f.value)} ${esc(unit ?? "")}`;
+  const shownUnit = unit === "ratio" || unit === "fraction" ? "" : unit; // dimensionless: no label
+  const mid = `${fmt(f.value)} ${esc(shownUnit ?? "")}`;
   if (f.value_low != null || f.value_high != null) return `${mid} <span class="meta">(${fmt(f.value_low ?? f.value)}–${fmt(f.value_high ?? f.value)})</span>`;
   return mid;
 }
