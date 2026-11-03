@@ -22,9 +22,9 @@ REGION_METRICS = {
 MODEL_METRICS = {
     "utilization": ("fraction", "Average IT load as share of IT capacity"),
     "pue": ("ratio", "Power usage effectiveness"),
-    "wue_evaporative": ("L/kWh", "Site WUE, evaporative cooling"),
-    "wue_air_economizer": ("L/kWh", "Site WUE, air-side economizer / dry cooling"),
-    "wue_closed_loop_liquid": ("L/kWh", "Site WUE, closed-loop liquid cooling"),
+    "wue_evaporative": ("L/kWh", "Site WUE, evaporative (cooling tower)"),
+    "wue_air_economizer": ("L/kWh", "Site WUE, air-side economizer + adiabatic"),
+    "wue_closed_loop_liquid": ("L/kWh", "Site WUE, closed-loop liquid (dry cooler)"),
 }
 
 ALL = {"facility": FACILITY_METRICS, "region": REGION_METRICS, "model": MODEL_METRICS}
