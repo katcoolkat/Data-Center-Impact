@@ -1,6 +1,6 @@
 entity_type,entity_id,metric,value_low,value,value_high,value_text,unit,kind,period,source_id,related_source_ids,method,notes
 model,default,utilization,0.5,0.65,0.8,,fraction,assumption,,model_assumption,lbnl_2024,Author judgment pending a sourced value. Facilities typically run below nameplate IT capacity.,
-model,default,pue,1.10,1.30,1.56,,ratio,assumption,,model_assumption,"google_env_2024,uptime_survey_2024",Low bound ~ hyperscale fleet PUE reported by Google; high bound ~ Uptime Institute 2024 survey average; central is author judgment.,Verify both bounds against the cited reports.
+model,default,pue,1.09,1.30,1.54,,ratio,assumption,,model_assumption,"google_env_2026,uptime_survey_2025",Low bound = Google 2025 fleet-wide PUE (1.09); high bound = Uptime Institute 2025 survey weighted average (1.54); central is author judgment.,Both bounds checked against the cited reports on 2026-11-03.
 model,default,wue_evaporative,0.5,1.0,2.0,,L/kWh,assumption,,model_assumption,lbnl_2024,Author judgment; replace with LBNL 2024 ranges once checked.,Strongly climate-dependent: higher in hot dry regions.
 model,default,wue_air_economizer,0.0,0.1,0.5,,L/kWh,assumption,,model_assumption,lbnl_2024,Author judgment; replace with LBNL 2024 ranges once checked.,
 model,default,wue_closed_loop_liquid,0.0,0.05,0.3,,L/kWh,assumption,,model_assumption,lbnl_2024,Author judgment; replace with LBNL 2024 ranges once checked.,
