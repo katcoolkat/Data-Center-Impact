@@ -27,7 +27,20 @@
       </section>
 
       <section id="tab-compare" class="panel" hidden>
-        <p class="hint">Use “Add to compare” on a site to line it up here (up to 4).</p>
+        <h2>Compare regions</h2>
+        <form id="region-compare-form" class="inline-form">
+          <label>Reference build (MW IT) <input name="it_capacity_mw" type="number" min="1" max="5000" step="1" value="100"></label>
+          <label>Cooling
+            <select name="cooling">
+              <option value="air_economizer">Air-side economizer + adiabatic</option>
+              <option value="evaporative">Evaporative (cooling tower)</option>
+              <option value="closed_loop_liquid">Closed-loop liquid (dry cooler)</option>
+            </select>
+          </label>
+        </form>
+        <div id="compare-regions"></div>
+        <h2 class="section-gap">Compare sites</h2>
+        <div id="compare-sites"></div>
       </section>
 
       <section id="tab-model" class="panel" hidden>

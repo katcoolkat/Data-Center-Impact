@@ -107,15 +107,64 @@ function drawPrices(region) {
 
 // ---------- compare ----------
 async function renderCompare() {
-  const el = $("#tab-compare");
+  renderRegionCompare();
+  renderSiteCompare();
+}
+
+async function renderRegionCompare() {
+  const fd = Object.fromEntries(new FormData($("#region-compare-form")));
+  const q = new URLSearchParams({ it_capacity_mw: fd.it_capacity_mw || 100, cooling: fd.cooling });
+  const { regions } = await api(`/api/compare/regions?${q}`);
+  const head = `<tr><th></th>${regions.map((r) => `<th>${esc(r.region.name)}</th>`).join("")}</tr>`;
+  const badge = (kind) => `<span class="badge ${esc(kind)}">${esc(kind)}</span>`;
+
+  const metricRows = Object.keys(regions[0].metrics).map((k) => {
+    const cells = regions.map(({ metrics }) => {
+      const m = metrics[k];
+      if (m.status === "unknown") return `<td><span class="value unknown">Unknown</span></td>`;
+      const f = m.fact;
+      const src = f.source ? `${f.source.publisher}, ${f.period ?? ""}` : "";
+      return `<td title="${esc(src)}">${factValue(f, m.unit)}${badge(f.kind)}</td>`;
+    });
+    return `<tr><th>${esc(regions[0].metrics[k].label)}</th>${cells.join("")}</tr>`;
+  });
+
+  const sectors = [["retail_price_res_cents_kwh", "Residential"], ["retail_price_com_cents_kwh", "Commercial"], ["retail_price_ind_cents_kwh", "Industrial"]];
+  const changeRows = sectors.map(([k, label]) => {
+    const cells = regions.map((r) => {
+      const c = r.price_change_5y[k];
+      if (!c) return `<td><span class="value unknown">Unknown</span></td>`;
+      return `<td title="${esc(c.method)}">${c.change_pct >= 0 ? "+" : ""}${c.change_pct.toFixed(0)}%
+        <div class="meta">${esc(c.from_period)} → ${esc(c.to_period)}</div>${badge("derived")}</td>`;
+    });
+    return `<tr><th>${label} price, 5-year change</th>${cells.join("")}</tr>`;
+  });
+
+  const co2Row = `<tr><th>Reference build: annual CO₂</th>${regions.map((r) => {
+    const o = r.reference_build.outputs.annual_co2;
+    return o
+      ? `<td>${fmt(o.central)} t<div class="meta">${fmt(o.low)}–${fmt(o.high)}</div>${badge("estimate")}</td>`
+      : `<td><span class="value unknown">Unknown</span></td>`;
+  }).join("")}</tr>`;
+  const countRow = `<tr><th>Facilities tracked</th>${regions.map((r) => `<td>${r.facilities_tracked}</td>`).join("")}</tr>`;
+
+  $("#compare-regions").innerHTML = `
+    <table class="compare">${head}${metricRows.join("")}${changeRows.join("")}${co2Row}${countRow}</table>
+    <p class="note">The reference build uses the same national PUE and water assumptions in every region, so only CO₂ differs
+      here, through the grid's emission rate. Its energy and site water are the same everywhere; see “Model a new build”.
+      Hover a value for its source.</p>`;
+}
+$("#region-compare-form").addEventListener("input", renderRegionCompare);
+
+async function renderSiteCompare() {
+  const el = $("#compare-sites");
   if (!compare.size) { el.innerHTML = `<p class="hint">Use “Add to compare” on a site to line it up here (up to 4).</p>`; return; }
   const sites = await Promise.all([...compare].map((id) => api(`/api/facilities/${id}`)));
   const metrics = Object.keys(sites[0].metrics);
   const cell = (m) => m.status === "unknown"
     ? `<span class="value unknown">Unknown</span>`
     : m.facts.map((f) => `${factValue(f, m.unit)}<span class="badge ${esc(f.kind)}">${esc(f.kind)}</span>`).join("<br>");
-  el.innerHTML = `<h2>Compare sites</h2>
-    <table class="compare"><tr><th></th>${sites.map((s) => `<th>${esc(s.name)}</th>`).join("")}</tr>
+  el.innerHTML = `<table class="compare"><tr><th></th>${sites.map((s) => `<th>${esc(s.name)}</th>`).join("")}</tr>
     ${metrics.map((k) => `<tr><th>${esc(sites[0].metrics[k].label)}</th>${sites.map((s) => `<td>${cell(s.metrics[k])}</td>`).join("")}</tr>`).join("")}
     </table><p class="note">Open a site for the source behind each value.</p>`;
 }
