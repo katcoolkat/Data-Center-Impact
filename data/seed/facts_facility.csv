@@ -1,1 +1,4 @@
 entity_type,entity_id,metric,value_low,value,value_high,value_text,unit,kind,period,source_id,related_source_ids,method,notes
+facility,microsoft_west_us_3,cooling_method,,,,"Adiabatic; evaporative above 85°F",,reported,2021,microsoft_az_2021,,,Microsoft says the Arizona datacenters use zero water for cooling for more than half the year.
+facility,meta_new_albany,cooling_method,,,,Closed-loop liquid (Prometheus AI cluster racks),,reported,2026,meta_new_albany_2026,,,Stated for the Prometheus supercluster; other buildings on the campus may differ.
+facility,equinix_ashburn,cooling_method,,,,Indirect evaporative (DC12 building),,reported,2017,equinix_dc12_2017,,,"Stated for DC12 only, one of several Equinix buildings in Ashburn."
