@@ -1,6 +1,8 @@
 # Data Center Impact Explorer
 
-**Live demo:** _coming soon_ · **API docs:** `/docs` on the live site
+**Live demo:** https://data-center-impact-explorer.onrender.com · **API docs:** https://data-center-impact-explorer.onrender.com/docs
+
+_Hosted on Render's free tier, so the first load after a quiet spell can take ~30 seconds while it wakes up._
 
 An interactive map of data centers in three US regions — Northern Virginia, Central Ohio, and Phoenix — with their sourced resource data (power, grid carbon intensity, water and cooling, local electricity prices), plus a model for estimating the footprint of a hypothetical new build.
 
