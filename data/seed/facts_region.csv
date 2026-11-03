@@ -1,0 +1,3 @@
+entity_type,entity_id,metric,value_low,value,value_high,value_text,unit,kind,period,source_id,related_source_ids,method,notes
+region,central_ohio,dc_contracted_mw,,17861,,,MW,reported,2026-02,aep_ohio_2026_02,puco_2025_07,,"AEP Ohio service territory: 12,219 MW signed before the PUCO-approved data center tariff plus 5,642 MW signed under it. Scheduled to come online progressively through 2035; not current load."
+region,central_ohio,dc_requested_mw,,30000,,,MW,reported,2024,aep_ohio_2026_02,,,"Reported as ""more than 30,000 MW"" requested before the tariff. Contracting under the tariff cut the studied subset from 13,022.7 MW to 5,642 MW."

@@ -17,6 +17,9 @@ REGION_METRICS = {
     "retail_price_com_cents_kwh": ("¢/kWh", "Average commercial retail electricity price"),
     "retail_price_ind_cents_kwh": ("¢/kWh", "Average industrial retail electricity price"),
     "retail_price_res_cents_kwh": ("¢/kWh", "Average residential retail electricity price"),
+    "dc_contracted_mw": ("MW", "Data center load under signed utility contracts"),
+    "dc_requested_mw": ("MW", "Data center load requested from the utility (pipeline)"),
+    "dc_share_of_peak_pct": ("%", "Data centers' share of utility peak demand"),
 }
 
 MODEL_METRICS = {
