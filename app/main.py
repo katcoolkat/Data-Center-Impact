@@ -1,7 +1,7 @@
 from pathlib import Path
 from typing import Literal
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Query
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
@@ -171,6 +171,65 @@ def post_estimate(req: EstimateRequest):
         ]
         + ([] if grid else ["Grid emission rate for this region is unknown, so CO2 is not estimated."]),
     }
+
+
+def _price_change(region_id: str, metric: str, years: int = 5) -> dict | None:
+    """Change between the latest monthly price and the same month `years` earlier.
+    Derived from two reported EIA values; comparing the same month avoids seasonal swings."""
+    latest = _latest("region", region_id, metric)
+    if latest is None or "-" not in (latest["period"] or ""):
+        return None
+    y, m = latest["period"].split("-")
+    earlier_period = f"{int(y) - years}-{m}"
+    earlier = con.execute(
+        "SELECT value FROM facts WHERE entity_type = 'region' AND entity_id = ? AND metric = ? AND period = ?",
+        (region_id, metric, earlier_period),
+    ).fetchone()
+    if earlier is None:
+        return None
+    return {
+        "from_period": earlier_period,
+        "to_period": latest["period"],
+        "from_value": earlier["value"],
+        "to_value": latest["value"],
+        "change_pct": (latest["value"] - earlier["value"]) / earlier["value"] * 100,
+        "kind": "derived",
+        "method": f"Percent change between two reported EIA monthly averages, {years} years apart, same month.",
+    }
+
+
+@app.get("/api/compare/regions")
+def compare_regions(
+    it_capacity_mw: float = Query(100, gt=0, le=5000),
+    cooling: Literal["evaporative", "air_economizer", "closed_loop_liquid"] = "air_economizer",
+):
+    """Side-by-side regional context plus the same reference build modeled in each region."""
+    sources = _sources()
+    out = []
+    for r in con.execute("SELECT * FROM regions ORDER BY name"):
+        rid = r["id"]
+        latest = {}
+        for metric, (unit, label) in REGION_METRICS.items():
+            fact = _latest("region", rid, metric)
+            latest[metric] = {
+                "label": label,
+                "unit": unit,
+                "status": "known" if fact else "unknown",
+                "fact": _with_sources(fact, sources) if fact else None,
+            }
+        n_facilities = con.execute("SELECT COUNT(*) FROM facilities WHERE region_id = ?", (rid,)).fetchone()[0]
+        build = post_estimate(EstimateRequest(region_id=rid, it_capacity_mw=it_capacity_mw, cooling=cooling))
+        out.append({
+            "region": dict(r),
+            "metrics": latest,
+            "price_change_5y": {
+                m: _price_change(rid, m)
+                for m in ("retail_price_res_cents_kwh", "retail_price_com_cents_kwh", "retail_price_ind_cents_kwh")
+            },
+            "facilities_tracked": n_facilities,
+            "reference_build": {"outputs": build["outputs"], "caveats": build["caveats"]},
+        })
+    return {"reference_build_inputs": {"it_capacity_mw": it_capacity_mw, "cooling": cooling}, "regions": out}
 
 
 app.mount("/static", StaticFiles(directory=STATIC), name="static")

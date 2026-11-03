@@ -47,3 +47,17 @@ def test_coverage_counts_match_facility_detail():
     )
     assert cov["facility_metrics_sourced"] == sourced
     assert cov["facility_metrics_total"] == cov["facilities"] * len(FACILITY_METRICS)
+
+
+def test_compare_regions_runs_the_same_build_everywhere():
+    body = client.get("/api/compare/regions", params={"it_capacity_mw": 50, "cooling": "evaporative"}).json()
+    assert body["reference_build_inputs"] == {"it_capacity_mw": 50, "cooling": "evaporative"}
+    regions = body["regions"]
+    assert {r["region"]["id"] for r in regions} == {"nova", "central_ohio", "phoenix"}
+    energies = {r["reference_build"]["outputs"]["annual_energy"]["central"] for r in regions}
+    assert len(energies) == 1  # energy doesn't depend on region; only grid CO2 does
+    for r in regions:
+        for change in r["price_change_5y"].values():
+            if change:
+                assert change["kind"] == "derived"
+                assert int(change["to_period"][:4]) - int(change["from_period"][:4]) == 5
