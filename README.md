@@ -47,11 +47,16 @@ Facilities and regions hold only identity and location. **Every number lives in 
 |---|---|---|
 | Retail electricity price | [EIA API v2](https://www.eia.gov/opendata/), retail sales (EIA-861M) | State × sector, monthly |
 | Grid CO₂ emission rate | [EPA eGRID](https://www.epa.gov/egrid) | eGRID subregion, annual average |
-| Facility locations | Operator location pages | City or county level |
-| Facility power, water, cooling | Utility filings, permit records, sustainability reports | Per facility, where public |
-| Model assumptions (PUE, WUE, utilization) | LBNL 2024 report, Google Environmental Report, Uptime Institute survey | National / industry |
+| Facility locations and status | Operator location pages and announcements (Google, Meta, Microsoft, Equinix) | City or county level |
+| Facility PUE and water use | [Google 2026 Environmental Report](https://sustainability.google/reports/google-2026-environmental-report/) (FY2025: PUE by campus p. 95, water by location p. 97); Google's quarterly [efficiency page](https://www.datacenters.google/efficiency) | Per campus, 2025 |
+| Facility cooling method | Operator announcements | Per site, where stated |
+| PUE range for the model | Google fleet-wide PUE (1.09, 2025); [Uptime Institute 2025 survey](https://datacenter.uptimeinstitute.com/rs/711-RIA-145/images/2025.Annual.Survey.Report.pdf) weighted average (1.54) | Fleet / industry |
+| Water use (WUE) by cooling system | [LBNL 2024 US Data Center Energy Usage Report](https://escholarship.org/uc/item/32d6m0d1), Figure 4.4 and p. 47 | National simulation |
+| Utilization | Author assumption, labeled as such | — |
 
-See `/api/sources` for the full list with URLs and access dates.
+See [`/api/sources`](https://data-center-impact-explorer.onrender.com/api/sources) for every source with its URL, access date and verification status.
+
+**Coverage:** the app footer and [`/api/coverage`](https://data-center-impact-explorer.onrender.com/api/coverage) show how many facility metrics are sourced so far. Most are still Unknown, and the count is shown so the gaps stay visible.
 
 ## Methodology: modeling a new build
 

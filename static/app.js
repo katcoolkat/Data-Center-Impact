@@ -158,7 +158,10 @@ async function init() {
     maxZoom: 18, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
   }).addTo(map);
 
-  const [regions, facilities] = await Promise.all([api("/api/regions"), api("/api/facilities")]);
+  const [regions, facilities, cov] = await Promise.all([api("/api/regions"), api("/api/facilities"), api("/api/coverage")]);
+  $("#coverage").textContent =
+    `Coverage: ${cov.facility_metrics_sourced} of ${cov.facility_metrics_total} facility metrics sourced; ` +
+    `${cov.sources_verified} of ${cov.sources_total} sources verified. ·`;
   $("#region-select").innerHTML = regions.map((r) => `<option value="${esc(r.id)}">${esc(r.name)}</option>`).join("");
 
   const markers = facilities.map((f) => {

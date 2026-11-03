@@ -36,3 +36,14 @@ def test_estimate_is_labeled_and_cites_inputs():
 def test_estimate_rejects_unknown_region():
     r = client.post("/api/estimate", json={"region_id": "nowhere", "it_capacity_mw": 100, "cooling": "evaporative"})
     assert r.status_code == 404
+
+
+def test_coverage_counts_match_facility_detail():
+    cov = client.get("/api/coverage").json()
+    sourced = sum(
+        m["status"] == "known"
+        for f in client.get("/api/facilities").json()
+        for m in client.get(f"/api/facilities/{f['id']}").json()["metrics"].values()
+    )
+    assert cov["facility_metrics_sourced"] == sourced
+    assert cov["facility_metrics_total"] == cov["facilities"] * len(FACILITY_METRICS)

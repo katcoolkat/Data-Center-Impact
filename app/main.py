@@ -102,6 +102,25 @@ def list_sources():
     return list(_sources().values())
 
 
+@app.get("/api/coverage")
+def coverage():
+    """How much of the facility data is sourced, so the gaps are visible rather than hidden."""
+    n_facilities = con.execute("SELECT COUNT(*) FROM facilities").fetchone()[0]
+    sourced = con.execute(
+        "SELECT COUNT(*) FROM (SELECT DISTINCT entity_id, metric FROM facts WHERE entity_type = 'facility')"
+    ).fetchone()[0]
+    verified, total_sources = con.execute(
+        "SELECT SUM(verified), COUNT(*) FROM sources WHERE kind != 'model_assumption'"
+    ).fetchone()
+    return {
+        "facility_metrics_sourced": sourced,
+        "facility_metrics_total": n_facilities * len(FACILITY_METRICS),
+        "facilities": n_facilities,
+        "sources_verified": verified or 0,
+        "sources_total": total_sources,
+    }
+
+
 @app.get("/api/assumptions")
 def list_assumptions():
     return _metric_block("model", "default", MODEL_METRICS)
